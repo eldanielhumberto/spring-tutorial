@@ -6,8 +6,9 @@
 		<title th:text="${Message}"></title>
 	</head>
 	<body>
-		<p
-			th:text="${studentFullName != null ? studentFullName : 'Fullname is empty'}"
-		></p>
+		<div th:each="Student : ${Students}">
+			<p th:text="${Student.name}"></p>
+			<p th:text="${Student.schoolYear}"></p>
+		</div>
 	</body>
 </html>
