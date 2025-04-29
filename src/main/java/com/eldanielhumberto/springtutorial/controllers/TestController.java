@@ -13,6 +13,7 @@ public class TestController {
     public String helloWorld(Model model) {
         Student student = new Student("Humberto", "Ramirez", 2);
         StudentDTO studentDTO = new StudentDTO(student.getName() + " " + student.getLastName());
+
         model.addAttribute("studentFullName", studentDTO.getFullname());
 
         return "hello-world";
