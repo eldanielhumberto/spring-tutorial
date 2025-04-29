@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eldanielhumberto.springtutorial.models.Student;
+import com.eldanielhumberto.springtutorial.models.dto.StudentDTO;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,14 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class TestRestController {
 
     @GetMapping("/get")
-    public Map<String, Object> getMap() {
-        Map<String, Object> response = new HashMap<>();
+    public StudentDTO getMap() {
 
-        // Using models
-        Student student = new Student("Humberto Daniel", 2);
-        response.put("Student", student);
+        // Using models and DTO
+        Student student = new Student("Humberto", "Ramirez", 2);
+        StudentDTO studentDTO = new StudentDTO(student.getName() + " " + student.getLastName());
 
-        return response;
+        return studentDTO;
     }
 
     @RequestMapping(path = "/post", method = RequestMethod.POST)
