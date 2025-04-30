@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title th:text="${Message}"></title>
+		<title
+			th:text="${Student.fullname + ' - ' + Student.schoolYear}"
+		></title>
 	</head>
 	<body>
 		<div th:each="Student : ${Students}">

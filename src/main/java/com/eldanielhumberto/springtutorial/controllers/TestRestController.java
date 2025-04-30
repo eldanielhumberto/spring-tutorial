@@ -19,13 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TestRestController {
 
     @GetMapping("/get")
-    public StudentDTO getTest(@RequestParam(required = false) String fullname) {
-        return new StudentDTO(fullname);
+    public StudentDTO getTest(@RequestParam(required = false) String fullname,
+            @RequestParam(required = false) Integer schoolYear) {
+        return new StudentDTO(fullname, schoolYear);
     }
 
     @GetMapping("/get/{fullname}")
-    public StudentDTO getPathVariableTest(@PathVariable String fullname) {
-        return new StudentDTO(fullname);
+    public StudentDTO getPathVariableTest(@PathVariable String fullname,
+            @RequestParam(required = false) Integer schoolYear) {
+        return new StudentDTO(fullname, schoolYear);
     }
 
     @RequestMapping(path = "/post", method = RequestMethod.POST)
