@@ -7,27 +7,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.eldanielhumberto.springtutorial.models.Student;
+// import com.eldanielhumberto.springtutorial.models.Student;
 import com.eldanielhumberto.springtutorial.models.dto.StudentDTO;
 
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/test-rest")
 public class TestRestController {
 
     @GetMapping("/get")
-    public StudentDTO getMap() {
+    public StudentDTO getTest(@RequestParam(required = false) String fullname) {
 
         // Using models and DTO
-        Student student = new Student("Humberto", "Ramirez", 2);
-        StudentDTO studentDTO = new StudentDTO(student.getName() + " " + student.getLastName());
+        // Student student = new Student("Humberto", "Ramirez", 2);
+        StudentDTO studentDTO = new StudentDTO(fullname);
 
         return studentDTO;
     }
 
     @RequestMapping(path = "/post", method = RequestMethod.POST)
-    public Map<String, Object> postMap() {
+    public Map<String, Object> postTest() {
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Hello post");
 
