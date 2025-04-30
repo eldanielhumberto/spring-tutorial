@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,12 +20,12 @@ public class TestRestController {
 
     @GetMapping("/get")
     public StudentDTO getTest(@RequestParam(required = false) String fullname) {
+        return new StudentDTO(fullname);
+    }
 
-        // Using models and DTO
-        // Student student = new Student("Humberto", "Ramirez", 2);
-        StudentDTO studentDTO = new StudentDTO(fullname);
-
-        return studentDTO;
+    @GetMapping("/get/{fullname}")
+    public StudentDTO getPathVariableTest(@PathVariable String fullname) {
+        return new StudentDTO(fullname);
     }
 
     @RequestMapping(path = "/post", method = RequestMethod.POST)
