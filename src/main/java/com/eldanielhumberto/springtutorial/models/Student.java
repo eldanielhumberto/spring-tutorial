@@ -1,12 +1,17 @@
 package com.eldanielhumberto.springtutorial.models;
 
-public class Student {
-    private String name, lastName;
-    private int schoolYear;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
-    public Student(String name, String lastName, int schoolYear) {
+public class Student {
+    @Size(min = 3, max = 20)
+    private String name;
+
+    @NotNull
+    private Integer schoolYear;
+
+    public Student(String name, String lastName, Integer schoolYear) {
         this.name = name;
-        this.lastName = lastName;
         this.schoolYear = schoolYear;
     }
 
@@ -14,11 +19,7 @@ public class Student {
         return name;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public int getSchoolYear() {
+    public Integer getSchoolYear() {
         return schoolYear;
     }
 }

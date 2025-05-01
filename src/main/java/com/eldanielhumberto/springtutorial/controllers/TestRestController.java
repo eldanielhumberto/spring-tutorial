@@ -1,5 +1,6 @@
 package com.eldanielhumberto.springtutorial.controllers;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.eldanielhumberto.springtutorial.models.Student;
 import com.eldanielhumberto.springtutorial.models.dto.StudentDTO;
+
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +32,11 @@ public class TestRestController {
     }
 
     @PostMapping("/post")
-    public Student postTest(@RequestBody Student entity) {
-        return entity;
+    public Object postTest(@Valid @RequestBody Student student, BindingResult result) {
+        if (result.hasErrors()) {
+            return result.getAllErrors();
+        }
+
+        return student;
     }
 }

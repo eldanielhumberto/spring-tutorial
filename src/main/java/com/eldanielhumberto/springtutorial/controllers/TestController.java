@@ -20,7 +20,7 @@ public class TestController {
     @ModelAttribute("Student")
     public StudentDTO student() {
         Student student = new Student("Humberto", "Ramirez", 2);
-        return new StudentDTO(student.getName() + " " + student.getLastName(), student.getSchoolYear());
+        return new StudentDTO(student.getName(), 2);
     }
 
     @ModelAttribute("Students")
