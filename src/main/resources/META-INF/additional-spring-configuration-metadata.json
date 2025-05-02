@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "config.code",
+    "type": "java.lang.String",
+    "description": "A description for 'config.code'"
+  },
+  {
+    "name": "config.messages",
+    "type": "java.lang.String",
+    "description": "A description for 'config.messages'"
+  }
+]}

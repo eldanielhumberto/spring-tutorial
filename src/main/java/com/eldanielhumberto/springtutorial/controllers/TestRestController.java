@@ -1,5 +1,9 @@
 package com.eldanielhumberto.springtutorial.controllers;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,10 +23,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/test-rest")
 public class TestRestController {
 
+    @Value("${config.code}")
+    private int code;
+
+    @Value("${config.messages}")
+    private String[] messages;
+
     @GetMapping("/get")
     public StudentDTO getTest(@RequestParam(required = false) String fullname,
             @RequestParam(required = false) Integer schoolYear) {
         return new StudentDTO(fullname, schoolYear);
+    }
+
+    @GetMapping("/@values")
+    public Map<String, Object> getValuesProperties() {
+        Map<String, Object> res = new HashMap<>();
+        res.put("code", code);
+        res.put("messages", messages);
+
+        return res; // output: { code: 1234, messages: ["Hola", "que onda", "si"] }
     }
 
     @GetMapping("/{fullname}")
