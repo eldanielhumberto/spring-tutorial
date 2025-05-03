@@ -10,7 +10,7 @@ public class Student {
     @NotNull
     private Integer schoolYear;
 
-    public Student(String name, String lastName, Integer schoolYear) {
+    public Student(String name, Integer schoolYear) {
         this.name = name;
         this.schoolYear = schoolYear;
     }
