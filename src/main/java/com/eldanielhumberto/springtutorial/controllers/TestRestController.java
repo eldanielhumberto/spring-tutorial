@@ -2,6 +2,7 @@ package com.eldanielhumberto.springtutorial.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class TestRestController {
         if (fullname != null) {
             try {
                 return ResponseEntity.ok(studentService.search(fullname));
-            } catch (Exception e) {
+            } catch (NoSuchElementException e) {
                 return ResponseEntity.ofNullable("Not found");
             }
         }
