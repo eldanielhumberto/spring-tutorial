@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.eldanielhumberto.springtutorial.models.Student;
 import com.eldanielhumberto.springtutorial.models.dto.StudentDTO;
+import com.eldanielhumberto.springtutorial.services.StudentService;
 
 import jakarta.validation.Valid;
 
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/test-rest")
 public class TestRestController {
 
+    private StudentService studentService = new StudentService();
+
     @Value("${config.code}")
     private int code;
 
@@ -30,9 +34,16 @@ public class TestRestController {
     private String[] messages;
 
     @GetMapping("/get")
-    public StudentDTO getTest(@RequestParam(required = false) String fullname,
-            @RequestParam(required = false) Integer schoolYear) {
-        return new StudentDTO(fullname, schoolYear);
+    public ResponseEntity<?> getTest(@RequestParam(required = false) String fullname) {
+        if (fullname != null) {
+            try {
+                return ResponseEntity.ok(studentService.search(fullname));
+            } catch (Exception e) {
+                return ResponseEntity.ofNullable("Not found");
+            }
+        }
+
+        return ResponseEntity.ok(studentService.findAll());
     }
 
     @GetMapping("/@values")
