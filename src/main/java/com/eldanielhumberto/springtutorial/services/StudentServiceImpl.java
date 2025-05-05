@@ -2,11 +2,16 @@ package com.eldanielhumberto.springtutorial.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.eldanielhumberto.springtutorial.models.Student;
 import com.eldanielhumberto.springtutorial.repositories.InMemoryStudentRepository;
 
+@Component
 public class StudentServiceImpl implements StudentService {
-    private InMemoryStudentRepository repository = new InMemoryStudentRepository();
+    @Autowired
+    private InMemoryStudentRepository repository;
 
     @Override
     public List<Student> findAll() {

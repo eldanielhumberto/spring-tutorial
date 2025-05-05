@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -26,7 +27,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/test-rest")
 public class TestRestController {
 
-    private StudentServiceImpl studentService = new StudentServiceImpl();
+    @Autowired
+    private StudentServiceImpl studentService;
 
     @Value("${config.code}")
     private int code;

@@ -3,8 +3,11 @@ package com.eldanielhumberto.springtutorial.repositories;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.eldanielhumberto.springtutorial.models.Student;
 
+@Component
 public class InMemoryStudentRepository implements StudentRepository {
     List<Student> students;
 
