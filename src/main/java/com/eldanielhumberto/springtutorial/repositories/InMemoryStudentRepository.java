@@ -3,7 +3,6 @@ package com.eldanielhumberto.springtutorial.repositories;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.eldanielhumberto.springtutorial.models.Student;
