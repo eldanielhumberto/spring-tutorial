@@ -4,10 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.eldanielhumberto.springtutorial.models.Student;
 
-@Component
+@Repository
 public class InMemoryStudentRepository implements StudentRepository {
     List<Student> students;
 
