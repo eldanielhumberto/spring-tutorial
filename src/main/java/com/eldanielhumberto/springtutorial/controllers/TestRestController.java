@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.eldanielhumberto.springtutorial.models.Student;
 import com.eldanielhumberto.springtutorial.models.dto.StudentDTO;
-import com.eldanielhumberto.springtutorial.services.StudentService;
+import com.eldanielhumberto.springtutorial.services.StudentServiceImpl;
 
 import jakarta.validation.Valid;
 
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/test-rest")
 public class TestRestController {
 
-    private StudentService studentService = new StudentService();
+    private StudentServiceImpl studentService = new StudentServiceImpl();
 
     @Value("${config.code}")
     private int code;
