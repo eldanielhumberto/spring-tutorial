@@ -38,7 +38,13 @@ public class TestRestController {
     public ResponseEntity<?> getTest(@RequestParam(required = false) String fullname) {
         if (fullname != null) {
             try {
-                return ResponseEntity.ok(studentService.search(fullname));
+                Student student = studentService.search(fullname);
+                Map<String, Object> response = new HashMap<>();
+
+                response.put("student", student);
+                response.put("student clone", student.clone());
+
+                return ResponseEntity.ok(response);
             } catch (NoSuchElementException e) {
                 return ResponseEntity.ofNullable("Not found");
             }
