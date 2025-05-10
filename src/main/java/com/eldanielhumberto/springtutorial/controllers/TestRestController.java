@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("/api/test-rest")
+@RequestMapping("/api/students")
 public class TestRestController {
 
     @Autowired
@@ -36,23 +36,14 @@ public class TestRestController {
     @Value("${config.messages}")
     private String[] messages;
 
-    @GetMapping("/get")
-    public ResponseEntity<?> getTest(@RequestParam(required = false) String fullname) {
-        if (fullname != null) {
-            try {
-                Student student = studentService.search(fullname);
-                Map<String, Object> response = new HashMap<>();
-
-                response.put("student", student);
-                response.put("student clone", student.clone());
-
-                return ResponseEntity.ok(response);
-            } catch (NoSuchElementException e) {
-                return ResponseEntity.ofNullable("Not found");
-            }
-        }
-
+    @GetMapping
+    public ResponseEntity<?> getTest() {
         return ResponseEntity.ok(studentService.findAll());
+    }
+
+    @PostMapping
+    public ResponseEntity<Student> postTest(@RequestBody Student student) {
+        return ResponseEntity.ok(studentService.save(student));
     }
 
     @GetMapping("/@values")
@@ -62,20 +53,5 @@ public class TestRestController {
         res.put("messages", messages);
 
         return res; // output: { code: 1234, messages: ["Hola", "que onda", "si"] }
-    }
-
-    @GetMapping("/{fullname}")
-    public StudentDTO getPathVariableTest(@PathVariable String fullname,
-            @RequestParam(required = false) Integer schoolYear) {
-        return new StudentDTO(fullname, schoolYear);
-    }
-
-    @PostMapping("/post")
-    public Object postTest(@Valid @RequestBody Student student, BindingResult result) {
-        if (result.hasErrors()) {
-            return result.getAllErrors();
-        }
-
-        return student;
     }
 }

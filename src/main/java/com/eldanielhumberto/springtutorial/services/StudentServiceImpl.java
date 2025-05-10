@@ -19,8 +19,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student search(String name) {
-        return repository.search(name);
+    public Student save(Student student) {
+        return repository.save(student);
     }
 
 }

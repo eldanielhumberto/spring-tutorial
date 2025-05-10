@@ -17,17 +17,4 @@ public class TestController {
         return "hello-world";
     }
 
-    @ModelAttribute("Student")
-    public StudentDTO student() {
-        Student student = new Student("Humberto", 2);
-        return new StudentDTO(student.getName(), 2);
-    }
-
-    @ModelAttribute("Students")
-    public List<Student> studentsList() {
-        return Arrays.asList(
-                new Student("Humberto", 2),
-                new Student("Jose Santiago", 2));
-    }
-
 }

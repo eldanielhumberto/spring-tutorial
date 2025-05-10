@@ -7,5 +7,5 @@ import com.eldanielhumberto.springtutorial.models.Student;
 public interface StudentService {
     List<Student> findAll();
 
-    Student search(String name);
+    Student save(Student student);
 }

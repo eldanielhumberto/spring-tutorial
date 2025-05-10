@@ -1,11 +1,8 @@
 package com.eldanielhumberto.springtutorial.repositories;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.eldanielhumberto.springtutorial.models.Student;
 
-public interface StudentRepository {
-    List<Student> findAll();
-
-    Student search(String name);
+public interface StudentRepository extends JpaRepository<Student, Integer> {
 }

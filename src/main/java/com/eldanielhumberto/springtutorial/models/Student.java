@@ -1,34 +1,34 @@
 package com.eldanielhumberto.springtutorial.models;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-public class Student implements Cloneable {
-    @Size(min = 3, max = 20)
+@Entity
+@Table(name = "students")
+public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
     private String name;
-
-    @NotNull
     private Integer schoolYear;
-
-    public Student(String name, Integer schoolYear) {
-        this.name = name;
-        this.schoolYear = schoolYear;
-    }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getSchoolYear() {
         return schoolYear;
     }
 
-    @Override
-    public Object clone() {
-        try {
-            return super.clone();
-        } catch (Exception e) {
-            return new Student(name, schoolYear);
-        }
+    public void setSchoolYear(Integer schoolYear) {
+        this.schoolYear = schoolYear;
     }
 }
