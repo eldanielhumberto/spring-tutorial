@@ -10,7 +10,12 @@ public class ErrorsHandler {
 
     @ExceptionHandler(ArithmeticException.class)
     public ResponseEntity<String> handlerArithmeticException(ArithmeticException e) {
-        return new ResponseEntity<>("Arithmetic Exception", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Arithmetic exception", HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NumberFormatException.class)
+    public ResponseEntity<String> handlerNumberFormatException(NumberFormatException e) {
+        return new ResponseEntity<>("Invalid numbers", HttpStatus.BAD_REQUEST);
     }
 
 }
