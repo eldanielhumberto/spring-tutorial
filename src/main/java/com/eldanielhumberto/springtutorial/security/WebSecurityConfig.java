@@ -21,7 +21,9 @@ public class WebSecurityConfig {
 						sessionManagement -> sessionManagement
 								.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(
-						authorize -> authorize.requestMatchers("/api/auth/login", "/api/operations").permitAll()
+						authorize -> authorize
+								.requestMatchers("/api/auth/login", "/api/operations", "/api/operations/null-value")
+								.permitAll()
 								.anyRequest().authenticated())
 				.addFilterAfter(new JwtAuthorizationFilter(new JwtUtil()),
 						UsernamePasswordAuthenticationFilter.class);

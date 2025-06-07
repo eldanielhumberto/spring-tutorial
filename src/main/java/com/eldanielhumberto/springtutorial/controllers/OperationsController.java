@@ -23,4 +23,11 @@ public class OperationsController {
             throw e;
         }
     }
+
+    @GetMapping("/null-value")
+    public String nullString() {
+        String nullValue = null;
+
+        return "Lenght string: " + nullValue.length();
+    }
 }
